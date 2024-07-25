@@ -19,7 +19,12 @@ run: bin/zookeeper-server-start.sh config/zookeeper.properties
 		- 2 consumer sử dụng chung groupId: chỉ 1 consumer nhận được message, các consumer còn lại không nhận được message > giúp cân bằng tải >
 			1 thằng đã xử lý rồi thì mấy thằng khác không cần xử lý nữa
 - fromBeginning là một cờ (flag) được sử dụng trong Kafka Consumer để chỉ định liệu consumer có nên đọc tin nhắn từ đầu hay chỉ đọc từ khi subcribe
-
+_ Brokers trong Kafka là các máy chủ chịu trách nhiệm lưu trữ, phân phối và quản lý tin nhắn trong hệ thống Kafka
+	- 	const kafka = new Kafka({
+		  clientId: "my-app2",
+		  brokers: ["localhost:9092"], // lúc setup thì đây là brokers
+		});
+	- nếu 2 consumer subcribe cùng một topic, khác groupId, mặc dù khác broker thì cũng không ảnh hưởng gì, cả 2 consumer đều nhận được tin nhắn
 
 *** demo này dựa trên video: https://youtu.be/g7VvvWkoXj0?si=0ycxo6nPV5_BeV1a
 - cài java JDK 17 trở lên, setup env JAVA_HOME
