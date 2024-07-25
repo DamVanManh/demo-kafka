@@ -14,10 +14,10 @@ run: bin/zookeeper-server-start.sh config/zookeeper.properties
 - groupId: 
 	- const consumer = kafka.consumer({ groupId: "test-group" });
 	- mỗi consumer(bên nhận message) có một groupId riêng biệt
-	- giả sử 2 MS tạo ra 2 instance kafka khác nhau, consumer bên trong đều subscribe vào cùng một topic thì:
-		- 2 consumer sử dụng 2 groupId khác nhau: 2 consumer nhận được message giống nhau > thường dùng 2 groupId nếu muốn subcribe độc lập
-		- 2 consumer sử dụng chung groupId: 
-			- không chia chỉ 1 consumer nhận được message, consumer còn lại không nhận được message
+	- giả sử 2 consumer đều subscribe vào cùng một topic thì:
+		- 2 consumer sử dụng 2 groupId khác nhau: 2 consumer đều nhận được message
+		- 2 consumer sử dụng chung groupId: chỉ 1 consumer nhận được message, các consumer còn lại không nhận được message > giúp cân bằng tải >
+			1 thằng đã xử lý rồi thì mấy thằng khác không cần xử lý nữa
 - fromBeginning là một cờ (flag) được sử dụng trong Kafka Consumer để chỉ định liệu consumer có nên đọc tin nhắn từ đầu hay chỉ đọc từ khi subcribe
 
 
